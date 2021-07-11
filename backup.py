@@ -23,7 +23,7 @@ if len(sys.argv) == 2:
         setOnGoogle = set(map(lambda x: x['title'], photo_list))
         setOnDrive = set(os.listdir("/Volumes/{}/Pictures".format(driveName)))
         for i in setOnDrive.difference(setOnGoogle):
-            file1 = drive.CreateFile({'title': i})
+            file1 = drive.CreateFile({'title': i, 'parents': [{'id': folderId}]})
             file1.SetContentFile('/Volumes/{}/Pictures/{}'.format(driveName,i))
             file1.Upload()
             print(i)
